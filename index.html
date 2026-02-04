@@ -138,6 +138,42 @@
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
+    /* SECRET MESSAGE */
+    .secret {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.6s;
+    }
+    .secret.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .secret .message {
+      background: #fff;
+      color: #000;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      animation: pop 0.6s ease-out;
+    }
+    body.dark .secret .message {
+      background: #141414;
+      color: #eee;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     /* HIDDEN */
     .hidden { display: none; }
   </style>
@@ -200,6 +236,26 @@
       <p><strong>Will you be my Valentine?</strong></p>
       <button onclick="yesClick()">Yes 💖</button>
       <button onclick="noClick()">Hmm… maybe 😏</button>
+
+      <br>
+      <small style="opacity:0.7;">
+        (Hint: Tap the heart icon 3 times for a surprise ✨)
+      </small>
+    </div>
+  </div>
+
+  <!-- SECRET MESSAGE -->
+  <div id="secret" class="secret">
+    <div class="message">
+      <h2>💌 Secret Message 💌</h2>
+      <p>
+        Torad, you are my favorite story.  
+        Every moment with you feels like a dream I never want to wake up from.
+      </p>
+      <p>
+        I love your smile, your strength, and the way you make me feel safe.
+      </p>
+      <button onclick="closeSecret()">Close 💖</button>
     </div>
   </div>
 
@@ -287,6 +343,29 @@
     function createExplosion() {
       for (let i = 0; i < 35; i++) createHeart();
       for (let i = 0; i < 80; i++) createConfetti();
+    }
+
+    // SECRET MESSAGE (tap 3 times on heart icon)
+    let secretTapCount = 0;
+
+    document.addEventListener("click", (e) => {
+      // check if clicked on the heart emoji in the page
+      if (e.target && e.target.innerText === "💖") {
+        secretTapCount++;
+        if (secretTapCount >= 3) {
+          openSecret();
+          secretTapCount = 0;
+        }
+      }
+    });
+
+    function openSecret() {
+      document.getElementById("secret").classList.add("open");
+      createExplosion();
+    }
+
+    function closeSecret() {
+      document.getElementById("secret").classList.remove("open");
     }
   </script>
 </body>
