@@ -174,18 +174,29 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* SECRET INPUT */
+    /* SECRET INPUT (HIDDEN) */
     .secret-input {
-      margin-top: 18px;
-      opacity: 0.85;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     .secret-input input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: 2px solid #7b1e3a;
-      font-size: 18px;
-      text-align: center;
+      width: 0;
+      height: 0;
+      border: none;
+    }
+
+    /* SECRET SPOT (invisible) */
+    .secret-spot {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 14px;
+      right: 14px;
+      opacity: 0;
+      cursor: pointer;
     }
 
     /* HIDDEN */
@@ -251,14 +262,12 @@
       <button onclick="yesClick()">Yes 💖</button>
       <button onclick="noClick()">Hmm… maybe 😏</button>
 
-      <br>
-      <small style="opacity:0.7;">
-        (Hint: Type the wind face emoji 🌬️ to unlock a secret ✨)
-      </small>
+      <!-- SECRET SPOT -->
+      <div class="secret-spot" onclick="revealSecretInput()"></div>
 
-      <!-- SECRET INPUT -->
+      <!-- SECRET INPUT (hidden) -->
       <div class="secret-input">
-        <input id="secretInput" type="text" placeholder="Type 🌬️ here..." />
+        <input id="secretInput" type="text" placeholder="Type here..." />
       </div>
     </div>
   </div>
@@ -361,12 +370,22 @@
       for (let i = 0; i < 80; i++) createConfetti();
     }
 
+    // SECRET SPOT (reveals hidden input)
+    function revealSecretInput() {
+      const inputBox = document.querySelector(".secret-input");
+      inputBox.style.opacity = 1;
+      inputBox.style.pointerEvents = "auto";
+      document.getElementById("secretInput").focus();
+    }
+
     // SECRET MESSAGE: unlock when 🌬️ is typed
     const secretInput = document.getElementById("secretInput");
     secretInput.addEventListener("input", () => {
       if (secretInput.value.includes("🌬️")) {
         openSecret();
         secretInput.value = "";
+        document.querySelector(".secret-input").style.opacity = 0;
+        document.querySelector(".secret-input").style.pointerEvents = "none";
       }
     });
 
