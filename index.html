@@ -13,11 +13,20 @@
       background: linear-gradient(135deg, #7b1e3a, #b76e79, #f4c2c2);
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
-      transition: 0.6s;
     }
 
-    body.dark {
-      background: linear-gradient(135deg, #0f0f14, #2b1b1f, #7b1e3a);
+    .wind-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      font-size: 50px;
+      opacity: 0.25;
+      pointer-events: none;
     }
 
     .card {
@@ -28,20 +37,10 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       max-width: 440px;
       z-index: 2;
-      transition: 0.6s;
-    }
-
-    body.dark .card {
-      background: #141414;
-      color: #eee;
     }
 
     h1 {
       color: #7b1e3a;
-    }
-
-    body.dark h1 {
-      color: #f4c2c2;
     }
 
     p {
@@ -66,10 +65,8 @@
       background-color: #5c152b;
     }
 
-    .music {
-      margin: 20px 0;
-      border-radius: 12px;
-      overflow: hidden;
+    .hidden {
+      display: none;
     }
 
     .heart {
@@ -85,21 +82,6 @@
         opacity: 0;
       }
     }
-
-    /* Wind-face emoji background */
-    .wind-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      justify-content: center;
-      font-size: 50px;
-      opacity: 0.25;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -110,7 +92,15 @@
     🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️
   </div>
 
-  <div class="card">
+  <!-- CLICK TO OPEN SCREEN -->
+  <div id="intro" class="card">
+    <h1>💖 Click to open 💖</h1>
+    <p>Tap once and your Valentine surprise will start 🎶🌸</p>
+    <button onclick="openValentine()">Open 💘</button>
+  </div>
+
+  <!-- VALENTINE PAGE -->
+  <div id="valentine" class="card hidden">
     <h1>💖 Happy Valentine’s Day 💖</h1>
     <p>
       Dear <strong>Torad</strong>,<br>
@@ -121,7 +111,8 @@
     <!-- YouTube Autoplay Music -->
     <div class="music">
       <iframe width="100%" height="80"
-        src="https://www.youtube.com/embed/1l8hYxW2FvQ?autoplay=1&controls=0&loop=1&playlist=1l8hYxW2FvQ"
+        id="musicFrame"
+        src=""
         title="Billie Eilish - Wildflower"
         frameborder="0"
         allow="autoplay; encrypted-media"
@@ -132,53 +123,4 @@
     <button onclick="showLove()">Favourite things you like 💕</button>
     <br><br>
     <p><strong>Will you be my Valentine?</strong></p>
-    <button onclick="yesClick()">Yes 💖</button>
-    <button onclick="noClick()">Hmm… maybe 😏</button>
-    <br><br>
-    <button onclick="toggleDark()">Dark mode 🖤</button>
-  </div>
-
-  <script>
-    function showLove() {
-      alert(
-        "🌸 Torad’s Favourite Things 🌸\n\n" +
-        "🐱 Cats\n" +
-        "🎤 Elisa\n" +
-        "🎶 Billie Eilish\n" +
-        "💄 Garnet red, brown & pink makeup\n" +
-        "🖤 Leather jackets\n" +
-        "🚿 Shower & skincare\n" +
-        "🍵 T9achar time\n" +
-        "❤️ Me"
-      );
-    }
-
-    function yesClick() {
-      for (let i = 0; i < 25; i++) {
-        createHeart();
-      }
-      alert("💖  🌹");
-    }
-
-    function noClick() {
-      alert("there will be only 'YES' option");
-    }
-
-    function toggleDark() { 
-      alert("there will only be the 'YES' option");
-      document.body.classList.toggle("dark");
-    }
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-  </script>
-
-</body>
-</html>
+    <button onclic
