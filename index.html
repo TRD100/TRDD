@@ -123,4 +123,61 @@
     <button onclick="showLove()">Favourite things you like 💕</button>
     <br><br>
     <p><strong>Will you be my Valentine?</strong></p>
-    <button onclic
+    <button onclick="yesClick()">Yes 💖</button>
+    <button onclick="noClick()">Hmm… maybe 😏</button>
+    <br><br>
+    <button onclick="toggleDark()">Dark mode 🖤</button>
+  </div>
+
+  <script>
+    function openValentine() {
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("valentine").classList.remove("hidden");
+
+      // Start the music (autoplay)
+      document.getElementById("musicFrame").src =
+        "https://www.youtube.com/embed/1l8hYxW2FvQ?autoplay=1&controls=0&loop=1&playlist=1l8hYxW2FvQ";
+    }
+
+    function showLove() {
+      alert(
+        "🌸 Torad’s Favourite Things 🌸\n\n" +
+        "🐱 Cats\n" +
+        "🎤 Elisa\n" +
+        "🎶 Billie Eilish\n" +
+        "💄 Garnet red, brown & pink makeup\n" +
+        "🖤 Leather jackets\n" +
+        "🚿 Shower & skincare moments\n" +
+        "🍵 T9achar time\n" +
+        "❤️ And… me"
+      );
+    }
+
+    function yesClick() {
+      for (let i = 0; i < 25; i++) {
+        createHeart();
+      }
+      alert("💖 You just made my heart very, VERY happy 💖\nHappy Valentine’s Day, Torad 🌹");
+    }
+
+    function noClick() {
+      alert("😏 I’ll wait… good things take time 💕");
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+  </script>
+
+</body>
+</html>
