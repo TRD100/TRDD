@@ -17,6 +17,7 @@
       background: linear-gradient(135deg, #0f0f14, #2b1b1f, #7b1e3a);
     }
 
+    /* PAGE CONTAINER */
     .page {
       min-height: 100vh;
       display: flex;
@@ -40,12 +41,20 @@
     body.dark .card {
       background: #141414;
       color: #eee;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
     }
 
-    h1 { color: #7b1e3a; margin: 0 0 10px; }
+    h1 {
+      color: #7b1e3a;
+      margin: 0 0 10px;
+    }
     body.dark h1 { color: #f4c2c2; }
 
-    p { font-size: 18px; line-height: 1.5; }
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
 
     button {
       margin: 10px 6px;
@@ -62,17 +71,43 @@
       transform: scale(1.05);
       background-color: #5c152b;
     }
+    body.dark button {
+      background-color: #5c152b;
+    }
 
-    .hidden { display: none; }
+    /* MOBILE */
+    @media (max-width: 500px) {
+      h1 { font-size: 24px; }
+      p { font-size: 16px; }
+      button { width: 100%; }
+    }
 
+    /* BACKGROUND WIND */
+    .wind-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      font-size: 40px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    /* TORAD ANIMATION */
     .torad {
       font-size: 60px;
       animation: shimmer 2.8s ease-in-out infinite;
     }
     @keyframes shimmer {
+      0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-12px) scale(1.1); }
     }
 
+    /* HEARTS */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -81,20 +116,29 @@
       z-index: 10;
     }
     @keyframes float {
-      to { transform: translateY(-110vh); opacity: 0; }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
     }
 
+    /* CONFETTI */
     .confetti {
       position: fixed;
       width: 10px;
       height: 10px;
-      animation: fall 4s linear forwards;
+      background: #ff4b8b;
       z-index: 999;
+      opacity: 0.9;
+      border-radius: 3px;
+      animation: fall 4s linear forwards;
     }
     @keyframes fall {
-      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
+    /* SECRET MESSAGE */
     .secret {
       position: fixed;
       inset: 0;
@@ -111,174 +155,229 @@
       opacity: 1;
       pointer-events: auto;
     }
-
     .secret .message {
       background: #fff;
+      color: #000;
       padding: 25px;
       border-radius: 20px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
       animation: pop 0.6s ease-out;
     }
     body.dark .secret .message {
       background: #141414;
       color: #eee;
     }
-
     @keyframes pop {
-      from { transform: scale(0.6); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
+    /* SECRET INPUT */
     .secret-input {
       margin-top: 18px;
-      opacity: 0;
-      transition: opacity 1s;
+      opacity: 0.85;
     }
+    .secret-input input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid #7b1e3a;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    /* HIDDEN */
+    .hidden { display: none; }
   </style>
 </head>
-
 <body>
 
-<!-- PAGE 1 -->
-<div id="page1" class="page">
-  <div class="card">
-    <h1>💖 Click to open 💖</h1>
-    <p>Tap once and your Valentine surprise will start 🎶🌸</p>
-    <button aria-label="Open Valentine surprise" onclick="goToPage(2)">Open 💘</button>
+  <!-- BACKGROUND WIND -->
+  <div class="wind-bg">
+    🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️
   </div>
-</div>
 
-<!-- PAGE 2 -->
-<div id="page2" class="page hidden">
-  <div class="card">
-    <h1>💖 Happy Valentine’s Day 💖</h1>
-    <p>Dear <strong>Torad</strong>,<br>Garnet red confidence, pink softness,<br>and a black leather jacket soul 🖤</p>
-
-    <button aria-label="Show favorite things" onclick="showLove()">Favourite things 💕</button>
-    <button aria-label="Go to next page" onclick="goToPage(3)">Next ➡️</button>
-    <br>
-    <button aria-label="Toggle dark mode" onclick="toggleDark()">Dark mode 🖤</button>
-  </div>
-</div>
-
-<!-- PAGE 3 -->
-<div id="page3" class="page hidden">
-  <div class="card">
-    <h1 class="torad">✨ Torad ✨</h1>
-    <p>This is your special page, just for you.</p>
-
-    <button aria-label="Play music" onclick="playMusic()">Play Music 🎶</button>
-    <button aria-label="Pause music" onclick="pauseMusic()">Pause ⏸️</button>
-
-    <p><strong>Will you be my Valentine?</strong></p>
-    <button aria-label="Yes answer" onclick="yesClick()">Yes 💖</button>
-    <button aria-label="Playful no answer" onclick="noClick(event)">Hmm… maybe 😏</button>
-
-    <small>(Hint: Type 🌬️ to unlock a secret)</small>
-
-    <div class="secret-input">
-      <input id="secretInput" type="text" placeholder="Type 🌬️ here..." />
+  <!-- PAGE 1 -->
+  <div id="page1" class="page">
+    <div class="card">
+      <h1>💖 Click to open 💖</h1>
+      <p>Tap once and your Valentine surprise will start 🎶🌸</p>
+      <button onclick="goToPage(2)">Open 💘</button>
     </div>
   </div>
-</div>
 
-<!-- SECRET -->
-<div id="secret" class="secret">
-  <div class="message">
-    <h2>💌 Secret Message 💌</h2>
-    <p>You are my favorite story. Every moment with you feels like a dream.</p>
-    <button aria-label="Close secret message" onclick="closeSecret()">Close 💖</button>
+  <!-- PAGE 2 -->
+  <div id="page2" class="page hidden">
+    <div class="card">
+      <h1>💖 Happy Valentine’s Day 💖</h1>
+      <p>
+        Dear <strong>Torad</strong>,<br>
+        Garnet red confidence, pink softness,<br>
+        and a black leather jacket soul 🖤
+      </p>
+
+      <div>
+        <button onclick="showLove()">Favourite things you like 💕</button>
+        <button onclick="goToPage(3)">Next ➡️</button>
+      </div>
+
+      <br>
+
+      <div>
+        <button onclick="toggleDark()">Dark mode 🖤</button>
+      </div>
+    </div>
   </div>
-</div>
 
-<audio id="audio" loop>
-  <source src="https://p.scdn.co/mp3-preview/7c3bcae5b9e3b6b9a6b4f3c3a8a3d8b2e7a8d8c7" type="audio/mpeg">
-</audio>
+  <!-- PAGE 3 -->
+  <div id="page3" class="page hidden">
+    <div class="card">
+      <h1 class="torad">✨ Torad ✨</h1>
+      <p>
+        This is your special page, just for you.  
+        You make everything brighter, softer, and bolder.
+      </p>
 
-<script>
-  const audio = document.getElementById("audio");
+      <div>
+        <button onclick="playMusic()">Play Music 🎶</button>
+        <button onclick="pauseMusic()">Pause Music ⏸️</button>
+      </div>
 
-  function playMusic() {
-    if (!audio.paused) return;
-    audio.play().catch(() => {
-      alert("Autoplay blocked. Tap Play again 🎶");
+      <br>
+
+      <p><strong>Will you be my Valentine?</strong></p>
+      <button onclick="yesClick()">Yes 💖</button>
+      <button onclick="noClick()">Hmm… maybe 😏</button>
+
+      <br>
+      <small style="opacity:0.7;">
+        (Hint: Type the wind face emoji 🌬️ to unlock a secret ✨)
+      </small>
+
+      <!-- SECRET INPUT -->
+      <div class="secret-input">
+        <input id="secretInput" type="text" placeholder="Type 🌬️ here..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- SECRET MESSAGE -->
+  <div id="secret" class="secret">
+    <div class="message">
+      <h2>💌 Secret Message 💌</h2>
+      <p>
+        Torad, you are my favorite story.  
+        Every moment with you feels like a dream I never want to wake up from.
+      </p>
+      <p>
+        I love your smile, your strength, and the way you make me feel safe.
+      </p>
+      <button onclick="closeSecret()">Close 💖</button>
+    </div>
+  </div>
+
+  <!-- AUDIO (Fallback for Autoplay) -->
+  <audio id="audio" loop>
+    <source src="https://p.scdn.co/mp3-preview/7c3bcae5b9e3b6b9a6b4f3c3a8a3d8b2e7a8d8c7?cid=774b29d4f13844c495f206cafdad9c86" type="audio/mpeg">
+  </audio>
+
+  <!-- CONFETTI/HEARTS -->
+  <script>
+    function goToPage(num) {
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.add("hidden");
+      document.getElementById("page3").classList.add("hidden");
+
+      document.getElementById("page" + num).classList.remove("hidden");
+
+      if (num === 2) playMusic();
+    }
+
+    function showLove() {
+      alert(
+        "🌸 Torad’s Favourite Things 🌸\n\n" +
+        "🐱 Cats\n" +
+        "🎤 Elisa\n" +
+        "🎶 Billie Eilish\n" +
+        "💄 Garnet red, brown & pink makeup\n" +
+        "🖤 Leather jackets\n" +
+        "🚿 Shower & skincare moments\n" +
+        "🍵 T9achar time\n" +
+        "❤️ And… me"
+      );
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Music controls
+    const audio = document.getElementById("audio");
+
+    function playMusic() {
+      audio.play().catch(() => {
+        alert("Autoplay blocked by browser. Please tap Play again to start music 🎶");
+      });
+    }
+
+    function pauseMusic() {
+      audio.pause();
+    }
+
+    // YES CLICK (confetti + hearts)
+    function yesClick() {
+      createExplosion();
+      alert("💖 You just made my heart very, VERY happy 💖\nHappy Valentine’s Day, Torad 🌹");
+    }
+
+    function noClick() {
+      alert("😏 I’ll wait… good things take time 💕");
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.background =
+        ["#ff4b8b", "#ff9aa2", "#ffe066", "#8e44ad", "#5dade2"][Math.floor(Math.random()*5)];
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 4000);
+    }
+
+    function createExplosion() {
+      for (let i = 0; i < 35; i++) createHeart();
+      for (let i = 0; i < 80; i++) createConfetti();
+    }
+
+    // SECRET MESSAGE: unlock when 🌬️ is typed
+    const secretInput = document.getElementById("secretInput");
+    secretInput.addEventListener("input", () => {
+      if (secretInput.value.includes("🌬️")) {
+        openSecret();
+        secretInput.value = "";
+      }
     });
-  }
 
-  function pauseMusic() {
-    audio.pause();
-  }
-
-  function goToPage(num) {
-    document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
-    document.getElementById("page" + num).classList.remove("hidden");
-
-    if (num === 3) {
-      setTimeout(() => {
-        document.querySelector(".secret-input").style.opacity = "1";
-      }, 5000);
+    function openSecret() {
+      document.getElementById("secret").classList.add("open");
+      createExplosion();
     }
-  }
 
-  function noClick(e) {
-    const btn = e.target;
-    btn.style.position = "relative";
-    btn.style.left = Math.random() * 120 - 60 + "px";
-    btn.style.top = Math.random() * 40 - 20 + "px";
-  }
-
-  function yesClick() {
-    createExplosion();
-    alert("💖 You made my heart very happy 💖");
-  }
-
-  function showLove() {
-    alert("Cats 🐱\nMusic 🎶\nLeather jackets 🖤\nAnd… me ❤️");
-  }
-
-  function toggleDark() {
-    document.body.classList.toggle("dark");
-  }
-
-  function createHeart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "💖";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 5000);
-  }
-
-  function createConfetti() {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = ["#ff4b8b","#ffe066","#8e44ad"][Math.floor(Math.random()*3)];
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 4000);
-  }
-
-  function createExplosion() {
-    for (let i = 0; i < 30; i++) createHeart();
-    for (let i = 0; i < 60; i++) createConfetti();
-  }
-
-  const secretInput = document.getElementById("secretInput");
-  secretInput.addEventListener("input", () => {
-    if (secretInput.value.includes("🌬️")) {
-      openSecret();
-      secretInput.value = "";
+    function closeSecret() {
+      document.getElementById("secret").classList.remove("open");
     }
-  });
-
-  function openSecret() {
-    document.getElementById("secret").classList.add("open");
-    createExplosion();
-  }
-
-  function closeSecret() {
-    document.getElementById("secret").classList.remove("open");
-  }
-</script>
-
+  </script>
 </body>
 </html>
