@@ -80,20 +80,6 @@
       button { width: 100%; }
     }
 
-    .wind-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      justify-content: center;
-      font-size: 40px;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
     .torad {
       font-size: 60px;
       animation: shimmer 2.8s ease-in-out infinite;
@@ -185,10 +171,6 @@
 </head>
 <body>
 
-  <div class="wind-bg">
-    🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️
-  </div>
-
   <!-- PAGE 1 -->
   <div id="page1" class="page">
     <div class="card">
@@ -271,7 +253,6 @@
     <iframe src="https://open.spotify.com/embed/track/SONG_ID" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
 
-  <!-- CONFETTI/HEARTS -->
   <script>
     function goToPage(num) {
       document.getElementById("page1").classList.add("hidden");
