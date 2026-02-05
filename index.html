@@ -17,7 +17,6 @@
       background: linear-gradient(135deg, #0f0f14, #2b1b1f, #7b1e3a);
     }
 
-    /* PAGE CONTAINER */
     .page {
       min-height: 100vh;
       display: flex;
@@ -75,14 +74,12 @@
       background-color: #5c152b;
     }
 
-    /* MOBILE */
     @media (max-width: 500px) {
       h1 { font-size: 24px; }
       p { font-size: 16px; }
       button { width: 100%; }
     }
 
-    /* BACKGROUND WIND */
     .wind-bg {
       position: absolute;
       width: 100%;
@@ -97,7 +94,6 @@
       pointer-events: none;
     }
 
-    /* TORAD ANIMATION */
     .torad {
       font-size: 60px;
       animation: shimmer 2.8s ease-in-out infinite;
@@ -107,7 +103,6 @@
       50% { transform: translateY(-12px) scale(1.1); }
     }
 
-    /* HEARTS */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -122,7 +117,6 @@
       }
     }
 
-    /* CONFETTI */
     .confetti {
       position: fixed;
       width: 10px;
@@ -138,7 +132,6 @@
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    /* SECRET MESSAGE */
     .secret {
       position: fixed;
       inset: 0;
@@ -174,7 +167,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* SECRET INPUT */
     .secret-input {
       margin-top: 18px;
       opacity: 0.85;
@@ -188,13 +180,11 @@
       text-align: center;
     }
 
-    /* HIDDEN */
     .hidden { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND WIND -->
   <div class="wind-bg">
     🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️ 🌬️
   </div>
@@ -253,12 +243,11 @@
 
       <br>
       <small style="opacity:0.7;">
-        (Hint: Type the wind face emoji 🌬️ to unlock a secret ✨)
+        Type that special emoji to unlock things ✨
       </small>
 
-      <!-- SECRET INPUT -->
       <div class="secret-input">
-        <input id="secretInput" type="text" placeholder="Type 🌬️ here..." />
+        <input id="secretInput" type="text" placeholder="Type emoji here ..." />
       </div>
     </div>
   </div>
@@ -278,20 +267,16 @@
     </div>
   </div>
 
-  <!-- AUDIO (Fallback for Autoplay) -->
   <audio id="audio" loop>
     <source src="https://p.scdn.co/mp3-preview/7c3bcae5b9e3b6b9a6b4f3c3a8a3d8b2e7a8d8c7?cid=774b29d4f13844c495f206cafdad9c86" type="audio/mpeg">
   </audio>
 
-  <!-- CONFETTI/HEARTS -->
   <script>
     function goToPage(num) {
       document.getElementById("page1").classList.add("hidden");
       document.getElementById("page2").classList.add("hidden");
       document.getElementById("page3").classList.add("hidden");
-
       document.getElementById("page" + num).classList.remove("hidden");
-
       if (num === 2) playMusic();
     }
 
@@ -313,7 +298,6 @@
       document.body.classList.toggle("dark");
     }
 
-    // Music controls
     const audio = document.getElementById("audio");
 
     function playMusic() {
@@ -326,7 +310,6 @@
       audio.pause();
     }
 
-    // YES CLICK (confetti + hearts)
     function yesClick() {
       createExplosion();
       alert("💖 You just made my heart very, VERY happy 💖\nHappy Valentine’s Day, Torad 🌹");
@@ -361,7 +344,6 @@
       for (let i = 0; i < 80; i++) createConfetti();
     }
 
-    // SECRET MESSAGE: unlock when 🌬️ is typed
     const secretInput = document.getElementById("secretInput");
     secretInput.addEventListener("input", () => {
       if (secretInput.value.includes("🌬️")) {
