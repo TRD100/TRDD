@@ -66,60 +66,16 @@
     Press play… then continue 🎧
   </p>
 
-  <!-- 🔥 PASTE YOUR SPOTIFY EMBED HERE -->
+  <!-- 🎵 Spotify Embed -->
   <iframe
-    src="https://open.spotify.com/embed/track/TRACK_ID_HERE?utm_source=generator"
+    src="https://open.spotify.com/embed/track/56CqQv5oOJmu70guWHLTTx"
     width="100%"
     height="152"
-    frameBorder="0"
+    frameborder="0"
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
     loading="lazy">
   </iframe>
 
   <button onclick="nextStep()">Continue</button>
 
-  <p id="step2" class="hidden">
-    Somewhere between our conversations,<br>
-    the laughs, and the little moments…<br>
-    you became really special to me.
-  </p>
-
-  <p id="step3" class="hidden">
-    So I wanted to ask you something…
-  </p>
-
-  <div id="question" class="hidden">
-    <h1>Will you be my Valentine? 💘</h1>
-    <button onclick="yes()">Yes 💕</button>
-    <button onclick="yes()">Obviously 😌</button>
-  </div>
-
-  <div id="final" class="hidden">
-    <h1>Happy Valentine’s Day 🌹</h1>
-    <p>I’m really glad it’s you.</p>
-  </div>
-</div>
-
-<script>
-  let step = 1;
-
-  function nextStep() {
-    if (step === 1) {
-      document.getElementById("step2").classList.remove("hidden");
-      step++;
-    } else if (step === 2) {
-      document.getElementById("step3").classList.remove("hidden");
-      step++;
-    } else {
-      document.getElementById("question").classList.remove("hidden");
-    }
-  }
-
-  function yes() {
-    document.getElementById("question").classList.add("hidden");
-    document.getElementById("final").classList.remove("hidden");
-  }
-</script>
-
-</body>
-</html>
+  <p id="step2" class="h
