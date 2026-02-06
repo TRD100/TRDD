@@ -2,80 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>💘 For You</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Torad ❤️</title>
   <style>
     body {
       margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #7b1e3a, #b76e79, #f4c2c2);
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
     }
 
-    .container {
-      padding: 60px 20px;
-      max-width: 700px;
-      margin: auto;
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      max-width: 420px;
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 20px;
+      color: #7b1e3a;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      font-size: 18px;
+      color: #444;
+      line-height: 1.5;
     }
 
     button {
-      background: white;
-      color: #ff4d6d;
+      margin-top: 25px;
+      padding: 14px 24px;
+      font-size: 16px;
+      background-color: #7b1e3a;
+      color: white;
       border: none;
-      padding: 14px 26px;
-      font-size: 1rem;
       border-radius: 30px;
       cursor: pointer;
-      margin: 10px;
-      transition: transform 0.2s;
+      transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.05);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    iframe {
-      border-radius: 12px;
-      margin-bottom: 30px;
+      background-color: #5c152b;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Hey you 💌</h1>
+  <div class="card">
+    <h1>💖 Happy Valentine’s Day 💖</h1>
+    <p>
+      Dear <strong>Torad</strong>,<br>
+      You’re elegant, bold, and beautiful — just like garnet red 💄✨
+    </p>
 
-  <p id="step1">
-    I made this just for you.<br>
-    Press play… then continue 🎧
-  </p>
+    <button onclick="showLove()">Favourite things you like 💕</button>
+  </div>
 
-  <!-- 🎵 Spotify Embed -->
-  <iframe
-    src="https://open.spotify.com/embed/track/56CqQv5oOJmu70guWHLTTx"
-    width="100%"
-    height="152"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
-  </iframe>
+  <script>
+    function showLove() {
+      alert(
+        "🌸 Torad’s Favourite Things 🌸\n\n" +
+        "🐱 Cats\n" +
+        "🎤 Elisa\n" +
+        "🎶 Billie Eilish\n" +
+        "💄 Garnet red, brown & pink makeup\n" +
+        "🖤 Leather jackets\n" +
+        "🚿 Shower & skincare moments\n" +
+        "🍵 T9achar time\n" +
+        "❤️ And… me"
+      );
+    }
+  </script>
 
-  <button onclick="nextStep()">Continue</button>
-
-  <p id="step2" class="h
+</body>
+</html>
