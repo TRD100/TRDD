@@ -167,6 +167,12 @@
     }
 
     .hidden { display: none; }
+
+    /* NEW: Dodging No button */
+    #noBtn {
+      position: relative;
+      transition: transform 0.25s ease;
+    }
   </style>
 </head>
 <body>
@@ -234,7 +240,7 @@
 
     <p><strong>Will you be my Valentine?</strong></p>
     <button onclick="yesClick()">Yes 💖</button>
-    <button onclick="noClick()">Hmm… maybe 😏</button>
+    <button id="noBtn">Hmm… maybe 😏</button>
 
     <br>
     <small style="opacity:0.7;">
@@ -325,6 +331,38 @@
     for (let i = 0; i < 35; i++) createHeart();
     for (let i = 0; i < 80; i++) createConfetti();
   }
+
+  // NEW: Dodging No Button
+  const noBtn = document.getElementById("noBtn");
+  let dodgeCount = 0;
+
+  function dodgeButton() {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 120 - 60;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  noBtn.addEventListener("mouseenter", () => {
+    if (dodgeCount < 3) {
+      dodgeButton();
+      dodgeCount++;
+    }
+  });
+
+  noBtn.addEventListener("click", () => {
+    if (dodgeCount < 3) {
+      dodgeButton();
+      dodgeCount++;
+      alert("😏 Not yet…");
+    } else {
+      // After 3 dodges: convert to YES
+      noBtn.innerText = "Yes 💖";
+      noBtn.style.backgroundColor = "#5c152b";
+      noBtn.style.transform = "translate(0,0)";
+      createExplosion();
+      alert("There will be no 'no' for me today 💕");
+    }
+  });
 
   const secretInput = document.getElementById("secretInput");
   secretInput.addEventListener("input", () => {
