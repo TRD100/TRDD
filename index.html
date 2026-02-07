@@ -2,80 +2,346 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>💘 For You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Torad ❤️</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
+      background: linear-gradient(135deg, #7b1e3a, #b76e79, #f4c2c2);
+      overflow-x: hidden;
+      transition: 0.6s;
+    }
+    body.dark {
+      background: linear-gradient(135deg, #0f0f14, #2b1b1f, #7b1e3a);
     }
 
-    .container {
-      padding: 60px 20px;
-      max-width: 700px;
-      margin: auto;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+    }
+    body.dark .card {
+      background: #141414;
+      color: #eee;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin-bottom: 20px;
+      color: #7b1e3a;
+      margin: 0 0 10px;
     }
+    body.dark h1 { color: #f4c2c2; }
 
     p {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 10px 0;
     }
 
     button {
-      background: white;
-      color: #ff4d6d;
+      margin: 10px 6px;
+      padding: 14px 20px;
+      font-size: 16px;
+      background-color: #7b1e3a;
+      color: white;
       border: none;
-      padding: 14px 26px;
-      font-size: 1rem;
       border-radius: 30px;
       cursor: pointer;
-      margin: 10px;
-      transition: transform 0.2s;
+      transition: 0.3s;
     }
-
     button:hover {
       transform: scale(1.05);
+      background-color: #5c152b;
+    }
+    body.dark button {
+      background-color: #5c152b;
     }
 
-    .hidden {
-      display: none;
+    @media (max-width: 500px) {
+      h1 { font-size: 24px; }
+      p { font-size: 16px; }
+      button { width: 100%; }
     }
 
-    iframe {
+    .torad {
+      font-size: 60px;
+      animation: shimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.1); }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: float 5s linear forwards;
+      z-index: 10;
+    }
+    @keyframes float {
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ff4b8b;
+      z-index: 999;
+      opacity: 0.9;
+      border-radius: 3px;
+      animation: fall 4s linear forwards;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    .secret {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.6s;
+    }
+    .secret.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .secret .message {
+      background: #fff;
+      color: #000;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      animation: pop 0.6s ease-out;
+    }
+    body.dark .secret .message {
+      background: #141414;
+      color: #eee;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .secret-input {
+      margin-top: 18px;
+      opacity: 0.85;
+    }
+    .secret-input input {
+      width: 100%;
+      padding: 12px;
       border-radius: 12px;
-      margin-bottom: 30px;
+      border: 2px solid #7b1e3a;
+      font-size: 18px;
+      text-align: center;
     }
+
+    .hidden { display: none; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Hey you 💌</h1>
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+  <div class="card">
+    <h1>💖 Click to open 💖</h1>
+    <p>Tap once and your Valentine surprise will start 🎶🌸</p>
+    <button onclick="goToPage(2)">Open 💘</button>
+  </div>
+</div>
 
-  <p id="step1">
-    I made this just for you.<br>
-    Press play… then continue 🎧
-  </p>
+<!-- PAGE 2 -->
+<div id="page2" class="page hidden">
+  <div class="card">
+    <h1>💖 Happy Valentine’s Day 💖</h1>
+    <p>
+      Dear <strong>Torad</strong>,<br>
+      Garnet red confidence, pink softness,<br>
+      and a black leather jacket soul 🖤
+    </p>
 
-  <!-- 🎵 Spotify Embed -->
-  <iframe
-    src="https://open.spotify.com/embed/track/56CqQv5oOJmu70guWHLTTx"
-    width="100%"
-    height="152"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
-  </iframe>
+    <div>
+      <button onclick="showLove()">Favourite things you like 💕</button>
+      <button onclick="goToPage(3)">Next ➡️</button>
+    </div>
 
-  <button onclick="nextStep()">Continue</button>
+    <br>
 
-  <p id="step2" class="h
+    <div>
+      <button onclick="toggleDark()">Dark mode 🖤</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page hidden">
+  <div class="card">
+    <h1 class="torad">✨ Torad ✨</h1>
+    <p>
+      This is your special page, just for you.  
+      You make everything brighter, softer, and bolder.
+    </p>
+
+    <div>
+      <button onclick="showSpotify()">Play Music 🎶</button>
+    </div>
+
+    <!-- SPOTIFY EMBED INSERTED -->
+    <div id="spotifyPlayer" style="display:none; width:100%; max-width:420px; margin: 0 auto; padding-top: 15px;">
+      <iframe
+        src="https://open.spotify.com/embed/track/56CqQv5oOJmu70guWHLTTx"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        style="border-radius:12px;">
+      </iframe>
+    </div>
+
+    <br>
+
+    <p><strong>Will you be my Valentine?</strong></p>
+    <button onclick="yesClick()">Yes 💖</button>
+    <button onclick="noClick()">Hmm… maybe 😏</button>
+
+    <br>
+    <small style="opacity:0.7;">
+      Type that special emoji to unlock things ✨
+    </small>
+
+    <div class="secret-input">
+      <input id="secretInput" type="text" placeholder="Type emoji here ..." />
+    </div>
+  </div>
+</div>
+
+<!-- SECRET MESSAGE -->
+<div id="secret" class="secret">
+  <div class="message">
+    <h2>💌 Secret Message 💌</h2>
+    <p>
+      Torad, you are my favorite story.  
+      Every moment with you feels like a dream I never want to wake up from.
+    </p>
+    <p>
+      I love your smile, your strength, and the way you make me feel safe.
+    </p>
+    <button onclick="closeSecret()">Close 💖</button>
+  </div>
+</div>
+
+<script>
+  function goToPage(num) {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.add("hidden");
+    document.getElementById("page" + num).classList.remove("hidden");
+  }
+
+  function showLove() {
+    alert(
+      "🌸 Torad’s Favourite Things 🌸\n\n" +
+      "🐱 Cats\n" +
+      "🎤 Elisa\n" +
+      "🎶 Billie Eilish\n" +
+      "💄 Garnet red, brown & pink makeup\n" +
+      "🖤 Leather jackets\n" +
+      "🚿 Shower & skincare moments\n" +
+      "🍵 T9achar time\n" +
+      "❤️ And… me"
+    );
+  }
+
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
+
+  function showSpotify() {
+    document.getElementById("spotifyPlayer").style.display = "block";
+  }
+
+  function yesClick() {
+    createExplosion();
+    alert("💖 You just made my heart very, VERY happy 💖\nHappy Valentine’s Day, Torad 🌹");
+  }
+
+  function noClick() {
+    alert("😏 I’ll wait… good things take time 💕");
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+
+  function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.background =
+      ["#ff4b8b", "#ff9aa2", "#ffe066", "#8e44ad", "#5dade2"][Math.floor(Math.random()*5)];
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 4000);
+  }
+
+  function createExplosion() {
+    for (let i = 0; i < 35; i++) createHeart();
+    for (let i = 0; i < 80; i++) createConfetti();
+  }
+
+  const secretInput = document.getElementById("secretInput");
+  secretInput.addEventListener("input", () => {
+    if (secretInput.value.includes("🌬️")) {
+      openSecret();
+      secretInput.value = "";
+    }
+  });
+
+  function openSecret() {
+    document.getElementById("secret").classList.add("open");
+    createExplosion();
+  }
+
+  function closeSecret() {
+    document.getElementById("secret").classList.remove("open");
+  }
+</script>
+
+</body>
+</html>
