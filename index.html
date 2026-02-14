@@ -168,7 +168,6 @@
 
     .hidden { display: none; }
 
-    /* NEW: Dodging No button */
     #noBtn {
       position: relative;
       transition: transform 0.25s ease;
@@ -218,15 +217,21 @@
       You make everything brighter, softer, bolder and classy.
     </p>
 
+    <!-- FIXED SECTION -->
+    <p>
+      Machi ay music machhoura rah meaningful, knt bghi nder lik Billie wla Elissa mais makn3rafhoumch niiiit mzn, central cee yalah slam w dar chahada khalih irta7 chwiya hhhhh, sinon hadi meaningful ktar, 7itach reflects you more; you're like home 🫶.
+    </p>
+
+    <p>
+      (You need to click the button so the music can appear, and don't blame me, blame spotify li ki3tiw ghir extrait).
+    </p>
+
     <div>
-      <button onclick="showSpotify()">Machi ay music machhoura rah meaningful, knt bghi nder lik Billie wla Elissa mais makn3rafhoumch niiiit mzn, central cee yalah slam w dar chahada khalih irta7 chwiya hhhhh, sinon hadi meaningful ktar, 7itach reflects you more; you're like home 🫶.
-        </p>
-        <p>
-        (You need to click on this box so the music can appear, and don't blame me, blame spotify li ki3tiw ghir extrait). 
-        Play the fckg music haha 🎶</button>
+      <button onclick="showSpotify()">
+        Play the fckg music haha 🎶
+      </button>
     </div>
 
-    <!-- SPOTIFY EMBED INSERTED -->
     <div id="spotifyPlayer" style="display:none; width:100%; max-width:420px; margin: 0 auto; padding-top: 15px;">
       <iframe
         src="https://open.spotify.com/embed/track/56CqQv5oOJmu70guWHLTTx"
@@ -255,141 +260,3 @@
     </div>
   </div>
 </div>
-
-<!-- SECRET MESSAGE -->
-<div id="secret" class="secret">
-  <div class="message">
-    <h2>💌 Final one 💌</h2>
-    <p>
-      Torad El Azami El Idrisi, still can’t believe the Torad name, so special. From day one you said it and I thought it was actually a nickname and not your real name.
-      I know we don’t talk anymore, but you always look unfairly good to me to not have this idea of this website for you, at least for this day (So clean w perfect bhal AI 😜🫶). You deserve more than a site a dhab,
-      you’re a good person, it was nice knowing you and having some little memories with you, and somewhere between the conversations, the jokes, and the little moments… you became special.
-      Although wanted to have that engineer-doctor combo with this precious blonde girl, machi m3a ay doctor w machi bdaroura a doctor, b7a9 m3a had Torad 😜. Mhm, whatever! 
-      Wish you all the best in your life, wish your 2025 was good and your 2026 will be as perfect and charming as the person you are, precious Torad. 
-      Surely you’re going to be a good doctor, a great wife, a good mom, and as I always say, a safe home; hope matkounich feminist oriented. “Du bist so schön und perfekt in dieser Welt, bis bald!”. And hard not to mention hhhh, I like your hair, w piercing jak nadi 😉.
-    </p>
-    <p>
-      Let’s end it with a question: does NASA know that you’re the star they’re looking for? ❤️, i dont think so, bha9 mzn ta7ad fhad 3alam may3rafha, i would feel good hahah.
-    </p>
-    <button onclick="closeSecret()">Close 💖</button>
-  </div>
-</div>
-
-<script>
-  function goToPage(num) {
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("page3").classList.add("hidden");
-    document.getElementById("page" + num).classList.remove("hidden");
-  }
-
-  function showLove() {
-    alert(
-      "🌸 Torad’s Favourite Things 🌸\n\n" +
-      "🐱 Cats\n" +
-      "🎤 Elisa\n" +
-      "🎶 Billie Eilish\n" +
-      "💄 Garnet red, brown & pink makeup\n" +
-      "🖤 Leather jackets\n" +
-      "💍 Surely dhab a dhaaab (Gold)\n" +
-      "🌸 Lward \n" +
-      "🚿 Shower & skincare\n" +
-      "🍵 T9ichrat\n" +
-      "❤️ And ofc Me"
-    );
-  }
-
-  function toggleDark() {
-    document.body.classList.toggle("dark");
-  }
-
-  function showSpotify() {
-    document.getElementById("spotifyPlayer").style.display = "block";
-  }
-
-  function yesClick() {
-    createExplosion();
-    alert("Feel free to say No hahah 😜, dawla dimou9ratia");
-  }
-
-  function noClick() {
-    alert("😏 c'mon…… There will be no 'no' for me today 💕");
-  }
-
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }
-
-  function createConfetti() {
-    const confetti = document.createElement("div");
-    confetti.className = "confetti";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.background =
-      ["#ff4b8b", "#ff9aa2", "#ffe066", "#8e44ad", "#5dade2"][Math.floor(Math.random()*5)];
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 4000);
-  }
-
-  function createExplosion() {
-    for (let i = 0; i < 35; i++) createHeart();
-    for (let i = 0; i < 80; i++) createConfetti();
-  }
-
-  // NEW: Dodging No Button
-  const noBtn = document.getElementById("noBtn");
-  let dodgeCount = 0;
-
-  function dodgeButton() {
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 120 - 60;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-  }
-
-  noBtn.addEventListener("mouseenter", () => {
-    if (dodgeCount < 3) {
-      dodgeButton();
-      dodgeCount++;
-    }
-  });
-
-  noBtn.addEventListener("click", () => {
-    if (dodgeCount < 3) {
-      dodgeButton();
-      dodgeCount++;
-      alert("😏 c'mon…zedi jarbi clicki ghat3ajbk 😉");
-    } else {
-      // After 3 dodges: convert to YES
-      noBtn.innerText = "Yes 💖";
-      noBtn.style.backgroundColor = "#5c152b";
-      noBtn.style.transform = "translate(0,0)";
-      createExplosion();
-      alert("There will be no 'no' for me today 💕, tatkharji mn site w ji goliha liya 😜 ");
-    }
-  });
-
-  const secretInput = document.getElementById("secretInput");
-  secretInput.addEventListener("input", () => {
-    if (secretInput.value.includes("🌬️")) {
-      openSecret();
-      secretInput.value = "";
-    }
-  });
-
-  function openSecret() {
-    document.getElementById("secret").classList.add("open");
-    createExplosion();
-  }
-
-  function closeSecret() {
-    document.getElementById("secret").classList.remove("open");
-  }
-</script>
-
-</body>
-</html>
